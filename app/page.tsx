@@ -223,6 +223,8 @@
 // };
 
 // export default ScreenshotEditor;
+
+
 import React, { useCallback, useEffect, useRef, useState } from "react"
 import { saveAs } from "file-saver"
 import html2canvas from "html2canvas"
@@ -637,7 +639,7 @@ const ScreenshotEditor = () => {
               <p>Drop the screenshot here ...</p>
             ) : (
               <p className="text-gray-600">
-                Drag &aposn&apos drop a screenshot here, or click to select one
+                Drag &apos;n&apos; drop a screenshot here, or click to select one
               </p>
             )}
           </div>
