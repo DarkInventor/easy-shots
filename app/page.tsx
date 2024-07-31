@@ -139,7 +139,7 @@ const ScreenshotEditor = () => {
               key={bg.id}
               onClick={() => handleBackgroundSelect(bg)}
               variant={selectedBackground === bg ? 'default' : 'outline'}
-              className={`w-full ${selectedBackground === bg ? 'bg-black text-white' : 'bg-transparent text-black'} hover:bg-gray-700`}
+              className={`w-full ${selectedBackground === bg ? 'bg-black text-white border-gray-300' : 'bg-transparent text-black border-gray-300'} hover:bg-gray-700`}
             >
               {bg.name}
             </Button>
@@ -152,7 +152,7 @@ const ScreenshotEditor = () => {
               key={size}
               onClick={() => handleScreenSizeChange(size)}
               variant={screenSize === size ? 'default' : 'outline'}
-              className={`w-full capitalize ${screenSize === size ? 'bg-black text-white' : 'bg-transparent text-black'} hover:bg-gray-700`}
+              className={`w-full capitalize border border-gray-300 ${screenSize === size ? 'bg-black text-white' : 'bg-transparent text-black'} hover:bg-gray-700`}
             >
               {size}
             </Button>
