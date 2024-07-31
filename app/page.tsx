@@ -118,7 +118,7 @@ const ScreenshotEditor = () => {
   const previewDimensions = getPreviewDimensions();
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen bg-gray-100 text-black">
       {/* Left Sidebar */}
       <div className="w-64 bg-white p-4 shadow-md overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">Backgrounds</h2>
