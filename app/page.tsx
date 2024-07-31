@@ -9,6 +9,7 @@ import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import { motion } from 'framer-motion';
 
 // List of free-to-use background image URLs
 const backgroundUrls = [
@@ -118,9 +119,19 @@ const ScreenshotEditor = () => {
   const previewDimensions = getPreviewDimensions();
 
   return (
-    <div className="flex h-screen bg-gray-100 text-black">
+    <motion.div 
+      className="flex h-screen bg-gray-100 text-black"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       {/* Left Sidebar */}
-      <div className="w-64 bg-white p-4 shadow-md overflow-y-auto">
+      <motion.div 
+        className="w-64 bg-white p-4 shadow-md overflow-y-auto"
+        initial={{ x: -100 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <h2 className="text-xl font-bold mb-4">Backgrounds</h2>
         <div className="space-y-2">
           {backgrounds.map((bg) => (
@@ -128,7 +139,7 @@ const ScreenshotEditor = () => {
               key={bg.id}
               onClick={() => handleBackgroundSelect(bg)}
               variant={selectedBackground === bg ? 'default' : 'outline'}
-              className="w-full"
+              className={`w-full ${selectedBackground === bg ? 'bg-black text-white' : 'bg-transparent text-black'} hover:bg-gray-700`}
             >
               {bg.name}
             </Button>
@@ -141,16 +152,22 @@ const ScreenshotEditor = () => {
               key={size}
               onClick={() => handleScreenSizeChange(size)}
               variant={screenSize === size ? 'default' : 'outline'}
-              className="w-full capitalize"
+              className={`w-full capitalize ${screenSize === size ? 'bg-black text-white' : 'bg-transparent text-black'} hover:bg-gray-700`}
             >
               {size}
             </Button>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Content */}
-      <div className="flex-1 p-8 overflow-y-auto" ref={containerRef}>
+      <motion.div 
+        className="flex-1 p-8 overflow-y-auto" 
+        ref={containerRef}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+      >
         <div {...getRootProps()} className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center h-[650px] flex flex-col items-center justify-center">
           <input {...getInputProps()} />
           <div 
@@ -196,8 +213,8 @@ const ScreenshotEditor = () => {
           )}
         </div>
         <div className="mt-4 space-x-2">
-          <Button onClick={handleDownload} disabled={!screenshot}>
-            <Download className="mr-2 h-4 w-4" /> Download
+          <Button onClick={handleDownload} disabled={!screenshot} className="bg-black text-white hover:bg-gray-700">
+            <Download className="mr-2 h-4 w-4 text-white" /> Download
           </Button>
           {/* <Button onClick={handleConvertToGif} disabled={!screenshot}>
             <Image className="mr-2 h-4 w-4" /> Convert to GIF
@@ -206,7 +223,7 @@ const ScreenshotEditor = () => {
             <Video className="mr-2 h-4 w-4" /> Convert to Video
           </Button> */}
         </div>
-      </div>
+      </motion.div>
 
       {/* Right Sidebar */}
       {/* <div className="w-64 bg-white p-4 shadow-md overflow-y-auto">
@@ -233,7 +250,7 @@ const ScreenshotEditor = () => {
           This is a prototype. Some features are not fully implemented.
         </AlertDescription>
       </Alert> */}
-    </div>
+    </motion.div>
   );
 };
 
